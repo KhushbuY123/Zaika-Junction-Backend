@@ -4,7 +4,7 @@ const app = express();
 import db from "./db/conn.js";
 import cors from "cors";
 import reciperoutes from "./routes/recipe.js"
-const PORT = 4000;
+const PORT = 3000;
 
 dotenv.config();
 
