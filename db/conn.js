@@ -1,19 +1,22 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-
 dotenv.config();
 
-const DB = process.env.MONGO_URI;
-
 const connectDB = async () => {
+  const uri = `mongodb+srv://pandey03muskan:cRAbhiIt6burlOnR@cluster0.4bkbt.mongodb.net/FindRecipes?retryWrites=true&w=majority&appName=Cluster0`
+  if (!uri) {
+    console.error("MONGODB_URI is not defined in .env file");
+    process.exit(1); 
+  }
+
   try {
-    await mongoose.connect(DB, {
-      useUnifiedTopology: true,
+    await mongoose.connect(uri, {
       useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
-    console.log("Connection successful");
+    console.log("Connected to MongoDB");
   } catch (err) {
-    console.error("No connection", err);
+    console.error("Error connecting to MongoDB:", err.message);
     process.exit(1); // Exit process with failure
   }
 };
