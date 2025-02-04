@@ -4,6 +4,8 @@ const app = express();
 import db from "./db/conn.js";
 import cors from "cors";
 import reciperoutes from "./routes/recipe.js"
+import signuproutes from "./routes/signup.js"
+import loginroutes from "./routes/login.js"
 const PORT = 3000;
 
 dotenv.config();
@@ -21,7 +23,8 @@ app.use(cors({
 
 //routes
 app.use("/api/recipes",reciperoutes)
-
+app.use("/api/signup",signuproutes)
+app.use("/api/login",loginroutes)
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
