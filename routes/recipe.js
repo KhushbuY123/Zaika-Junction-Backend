@@ -1,8 +1,8 @@
 import express from "express";
-import Recipes from "../controllers/recipes.js"
+import Recipes from "../controllers/recipes.js";
 
-const router=express.Router();
+const router = express.Router();
 
-router.get("/getall",Recipes)
+router.get("/getall", Recipes);
 
 export default router;

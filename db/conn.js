@@ -3,14 +3,14 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const connectDB = async () => {
-  const uri = `mongodb+srv://pandey03muskan:cRAbhiIt6burlOnR@cluster0.4bkbt.mongodb.net/FindRecipes?retryWrites=true&w=majority&appName=Cluster0`
+  const uri = process.env.MONGO_URI;
   if (!uri) {
     console.error("MONGODB_URI is not defined in .env file");
-    process.exit(1); 
+    process.exit(1);
   }
 
   try {
-    await mongoose.connect(uri, {
+    await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
