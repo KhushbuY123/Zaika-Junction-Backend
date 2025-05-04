@@ -5,6 +5,8 @@ import db from "./db/conn.js";
 import cors from "cors";
 import reciperoutes from "./routes/recipe.js";
 import authroutes from "./routes/authRoutes.js";
+import postrecipe from "./routes/postrecipe.js";
+
 const PORT = 4000;
 
 dotenv.config();
@@ -25,6 +27,7 @@ app.use(
 //routes
 app.use("/api/recipes", reciperoutes);
 app.use("/api/user", authroutes);
+app.use("/api/post",postrecipe)
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -33,3 +36,4 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
