@@ -40,14 +40,13 @@ export const Signup = async (req, res) => {
     return res.status(400).json({ error: "All fields are required." });
   }
   try {
-    const existUser = await SignUpSchema.findOne({ email: email });
+    const existUser = await signupschema.findOne({ email: email });
     if (existUser) {
       return res.status(400).json({ error: "User already exists." });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new SignUpSchema({ name, email, password: hashedPassword });
+    const newUser = new signupschema({ name, email, password: hashedPassword });
     const savedUser = await newUser.save();
-    console.log(savedUser);
     return res
       .status(201)
       .json({ message: "User signed up successfully !", user: savedUser });
