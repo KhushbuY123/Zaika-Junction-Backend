@@ -11,7 +11,11 @@ export const Login = async (req, res) => {
   try {
     const user = await signupschema.findOne({ email });
     if (!user) {
-      return res.status(404).json({ success: false, error: "" });
+      // Don't reveal whether the email or password was wrong
+      return res.status(401).json({
+        success: false,
+        error: "Invalid credentials. Please try again.",
+      });
     }
 
     const isPassword = await bcrypt.compare(password, user.password);
@@ -30,9 +34,10 @@ export const Login = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: "Server error Please try again later." });
+      .json({ success: false, error: "Server error. Please try again later." });
   }
 };
+
 
 export const Signup = async (req, res) => {
   const { name, email, password } = req.body;

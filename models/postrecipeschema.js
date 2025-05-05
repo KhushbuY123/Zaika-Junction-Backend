@@ -12,25 +12,23 @@ const RecipeSchema = new Schema({
     type:Number,
   },
   Cuisine:{
-    type:String,
+    type:[String],
   },
   TranslatedInstructions:{
     type:String,
   },
-  URL:{
+  Description:{
     type:String,
   },
   CleanedIngredients:{
     type:String,
-    alias:'Cleaned-Ingredients'
   },
   imageurl:{
    type:String,
-   alias:'image-url' 
   },
   IngredientCount:{
     type:Number,
-    alias:'Ingredient-count'
+    // alias:'Ingredient-count'
   },
 });
 
