@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const {Schema}=mongoose;
 
 const RecipeSchema = new Schema({
-    TranslatedRecipeName: {
+  TranslatedRecipeName: {
     type: String,
   },
   TranslatedIngredients: {
@@ -30,6 +30,11 @@ const RecipeSchema = new Schema({
     type:Number,
     // alias:'Ingredient-count'
   },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'SignUpSchema',
+    required: true
+  }
 });
 
 export default mongoose.models.recipePost || mongoose.model('recipePost', RecipeSchema);
