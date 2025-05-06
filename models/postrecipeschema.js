@@ -28,7 +28,6 @@ const RecipeSchema = new Schema({
   },
   IngredientCount:{
     type:Number,
-    // alias:'Ingredient-count'
   },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,

@@ -16,6 +16,8 @@ db();
 
 // Middleware
 app.use(express.json());
+// app.use(express.json({ limit: '10mb' })); // or more if needed
+// app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(
   cors({
     origin: "*", // Replace with your front-end URL
