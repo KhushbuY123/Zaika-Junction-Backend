@@ -7,9 +7,8 @@ import reciperoutes from "./routes/recipe.js";
 import authroutes from "./routes/authRoutes.js";
 // import postrecipe from "./routes/postrecipe.js";
 
-const PORT = 4000;
-
 dotenv.config();
+const PORT = process.env.PORT || 4000;
 
 // DB Connection
 db();
