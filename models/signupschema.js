@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const {Schema}=mongoose;
 
 const SignUpSchema = new Schema({
-    name: {
+  name: {
     type: String,
     required:true,
     trim:true,
@@ -17,7 +17,9 @@ const SignUpSchema = new Schema({
     type:String,
     required:true,
     minlength:6,
-  }
+  },
+  followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 });
 
 export default mongoose.models.signup || mongoose.model('signup', SignUpSchema);
