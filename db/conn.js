@@ -3,9 +3,8 @@ dotenv.config();
 import mongoose from "mongoose";
 
 const connectDB = async () => {
-  // console.log(process.env.MONGODB_URI)
-  // console.log(process.env.NODE_ENV === 'dev')
-  const uri = "mongodb+srv://pandey03muskan:cRAbhiIt6burlOnR@cluster0.4bkbt.mongodb.net/FindRecipes?retryWrites=true&w=majority&appName=Cluster0";
+  const uri =
+    "mongodb+srv://pandey03muskan:cRAbhiIt6burlOnR@cluster0.4bkbt.mongodb.net/FindRecipes?retryWrites=true&w=majority&appName=Cluster0";
   if (!uri) {
     console.error("MONGODB_URI is not defined in .env file");
     process.exit(1);
