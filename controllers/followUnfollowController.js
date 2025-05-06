@@ -1,4 +1,6 @@
-export const followUser = async (req, res) => {
+import signupschema from "../models/signupschema.js";
+
+export const FollowUser = async (req, res) => {
     try {
       const currentUserId = req.userId;
       const { targetUserId } = req.body;
@@ -8,12 +10,12 @@ export const followUser = async (req, res) => {
       }
   
       // Add to following (if not already following)
-      await UserSchema.findByIdAndUpdate(currentUserId, {
+      await signupschema.findByIdAndUpdate(currentUserId, {
         $addToSet: { following: targetUserId },
       });
   
       // Add to followers (if not already in there)
-      await UserSchema.findByIdAndUpdate(targetUserId, {
+      await signupschema.findByIdAndUpdate(targetUserId, {
         $addToSet: { followers: currentUserId },
       });
   
@@ -26,7 +28,7 @@ export const followUser = async (req, res) => {
   
 
 
-export const unfollowUser = async (req, res) => {
+export const UnfollowUser = async (req, res) => {
     try {
       const currentUserId = req.userId;
       const { targetUserId } = req.body;
@@ -36,12 +38,12 @@ export const unfollowUser = async (req, res) => {
       }
   
       // Remove from following
-      await UserSchema.findByIdAndUpdate(currentUserId, {
+      await signupschema.findByIdAndUpdate(currentUserId, {
         $pull: { following: targetUserId },
       });
   
       // Remove from followers
-      await UserSchema.findByIdAndUpdate(targetUserId, {
+      await signupschema.findByIdAndUpdate(targetUserId, {
         $pull: { followers: currentUserId },
       });
   
