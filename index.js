@@ -16,24 +16,32 @@ db();
 
 // Middleware
 app.use(express.json());
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://zaika-junction.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "*", // Replace with your front-end URL
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Allow cookies/auth headers
+    credentials: true,
   })
 );
+app.options("*", cors());
 
 //routes
 app.use("/api/recipes", reciperoutes);
 app.use("/api/user", authroutes);
 // app.use("/api/recipes",reciperoutes)
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
