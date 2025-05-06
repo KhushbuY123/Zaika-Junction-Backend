@@ -5,7 +5,7 @@ import db from "./db/conn.js";
 import cors from "cors";
 import reciperoutes from "./routes/recipe.js";
 import authroutes from "./routes/authRoutes.js";
-import postrecipe from "./routes/postrecipe.js";
+// import postrecipe from "./routes/postrecipe.js";
 
 const PORT = 4000;
 
@@ -27,7 +27,7 @@ app.use(
 //routes
 app.use("/api/recipes", reciperoutes);
 app.use("/api/user", authroutes);
-app.use("/api/post",postrecipe)
+// app.use("/api/recipes",reciperoutes)
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
