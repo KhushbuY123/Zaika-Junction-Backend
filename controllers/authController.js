@@ -2,7 +2,7 @@ import signupschema from "../models/signupschema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET="yourSuperSecretKey"
+const JWT_SECRET = "yourSuperSecretKey";
 // const JWT_EXPIRES_IN=7
 export const Login = async (req, res) => {
   const { email, password } = req.body;
@@ -44,7 +44,6 @@ export const Login = async (req, res) => {
   }
 };
 
-
 export const Signup = async (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
@@ -65,10 +64,25 @@ export const Signup = async (req, res) => {
 
     return res
       .status(201)
-      .json({ message: "User signed up successfully!", token, user: savedUser });
+      .json({
+        message: "User signed up successfully!",
+        token,
+        user: savedUser,
+      });
   } catch (error) {
     return res
       .status(500)
       .json({ error: "Server error. Please try again later" });
+  }
+};
+
+// Get all users (excluding password)
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await signupschema.find({}, "-password"); // exclude password
+    res.status(200).json({ success: true, users });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: "Server error" });
   }
 };
