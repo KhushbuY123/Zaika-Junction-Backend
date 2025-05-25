@@ -25,7 +25,7 @@ export const Chatbot = async (req, res) => {
         query: [
           {
             query: queryText.trim(),
-            num_results: 3, // increased for better chances of match
+            num_results: 3,
             corpus_key: [
               {
                 customer_id: CUSTOMER_ID,
@@ -79,5 +79,6 @@ export const Chatbot = async (req, res) => {
 };
 
 export default Chatbot;
+
 
   
