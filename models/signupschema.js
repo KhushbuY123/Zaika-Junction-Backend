@@ -18,8 +18,10 @@ const SignUpSchema = new Schema({
     required:true,
     minlength:6,
   },
-  followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-  following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  // followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  // following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SignUpSchema' }],
+  following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SignUpSchema' }]
 });
 
 export default mongoose.models.signup || mongoose.model('signup', SignUpSchema);

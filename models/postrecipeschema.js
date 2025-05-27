@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import SignUpSchema from "../models/signupschema.js";
 const {Schema}=mongoose;
 
 const RecipeSchema = new Schema({
@@ -31,9 +32,14 @@ const RecipeSchema = new Schema({
   },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'SignUpSchema',
+    ref: 'signup',
     required: true
-  }
+  },
+  likes: [
+    { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'signup'
+    }],
 });
 
 export default mongoose.models.recipePost || mongoose.model('recipePost', RecipeSchema);
