@@ -95,26 +95,41 @@ import db from "./db/conn.js";
 // import chatRoutes from "./routes/chatRoutes.js";
 import reciperoutes from "./routes/recipe.js";
 import authroutes from "./routes/authRoutes.js";
-import chatRoutes from "./routes/chatRoutes.js";
-import Chat from "./models/chatschema.js";
+// import postrecipe from "./routes/postrecipe.js";
 
 dotenv.config();
+const PORT = process.env.PORT || 4000;
 
 const app = express();
-const PORT = 4000;
 
 // Connect to DB
 db();
 
 // Middleware
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000", // Replace with your frontend URL
+// app.use(express.json());
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://zaika-junction.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "http://localhost:3000", // Replace with your frontend URL
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
-app.use(express.json()); // To parse JSON request bodies
+app.options("*", cors());
 
 // API Routes
 app.use("/api/recipes", reciperoutes);
