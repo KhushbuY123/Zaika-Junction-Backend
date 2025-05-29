@@ -21,7 +21,7 @@ db();
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:3000", // Replace with your frontend URL
+    origin: "https://zaika-junction.vercel.app/", // Replace with your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
